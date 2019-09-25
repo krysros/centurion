@@ -1,20 +1,12 @@
-import string
 import cherrypy
 from centurion.lookup import get_template
 from centurion.models import Price
-from centurion.forms import CATEGORIES
+from centurion.views import BaseView
 
 
-class ProjectView(object):
+class ProjectView(BaseView):
     def __init__(self, session):
-        self.session = session
-        self.categories = dict(CATEGORIES)
-        self.alphabet = list(string.ascii_lowercase)
-
-    @cherrypy.expose
-    def default(self, *args, **kwargs):
-        template = get_template('notfound.mako')
-        return template.render()
+        super().__init__(session)
 
     @cherrypy.expose
     def index(self, name=None):

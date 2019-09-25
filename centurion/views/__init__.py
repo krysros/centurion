@@ -1,4 +1,5 @@
 from .root import Root  # noqa
+from .base import BaseView  # noqa
 from .price import PriceView  # noqa
 from .company import CompanyView  # noqa
 from .project import ProjectView  # noqa
