@@ -79,8 +79,8 @@ class PriceView(object):
             criterion = [getattr(Price, k) == v for k, v in data.items() if v]
             query = self.session.query(Price)
             prices = query.filter(*criterion)
-            template = get_template('results.mako')
-            return template.render(smalltext='', header='Wyniki',
-                                   prices=prices, categories=self.categories)
+            template = get_template('prices.mako')
+            return template.render(prices=prices,
+                                   categories=self.categories, alphabet=self.alphabet)
         template = get_template('select.mako')
         return template.render(form=form)

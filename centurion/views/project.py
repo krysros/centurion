@@ -1,3 +1,4 @@
+import string
 import cherrypy
 from centurion.lookup import get_template
 from centurion.models import Price
@@ -8,6 +9,7 @@ class ProjectView(object):
     def __init__(self, session):
         self.session = session
         self.categories = dict(CATEGORIES)
+        self.alphabet = list(string.ascii_lowercase)
 
     @cherrypy.expose
     def default(self, *args, **kwargs):
@@ -20,6 +22,6 @@ class ProjectView(object):
             return self.default()
         query = self.session.query(Price)
         prices = query.filter(Price.project == name).order_by(Price.timestamp.desc())
-        template = get_template('results.mako')
-        return template.render(smalltext='Projekt', header=name,
-                               prices=prices, categories=self.categories)
+        template = get_template('prices.mako')
+        return template.render(prices=prices,
+                               categories=self.categories, alphabet=self.alphabet)
