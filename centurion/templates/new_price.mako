@@ -24,7 +24,7 @@
       <div class="col">
         <div class="form-group">
           ${form.cost.label}
-          ${form.cost(class_="form-control")}
+          ${form.cost(class_="form-control", type="number", step="0.01")}
         </div>
       </div>
       <div class="col">
