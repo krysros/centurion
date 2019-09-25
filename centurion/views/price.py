@@ -34,7 +34,7 @@ class PriceView(object):
         if not price:
             return self.default()
         self.session.delete(price)
-        raise cherrypy.HTTPRedirect('/price/browse')
+        raise cherrypy.HTTPRedirect('/')
 
     @cherrypy.expose
     def display(self, id):
