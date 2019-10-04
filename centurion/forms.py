@@ -14,6 +14,7 @@ from wtforms import (
 
 CATEGORIES = [
     ('A', 'RMS'),
+    ('B', 'Bez materiału'),
     ('R', 'Robocizna'),
     ('M', 'Materiał'),
     ('S', 'Sprzęt'),
