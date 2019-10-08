@@ -22,7 +22,7 @@ def upgrade():
         'price',
         sa.Column('id', sa.Integer, primary_key=True),
         sa.Column('name', sa.Unicode(200)),
-        sa.Column('category', sa.Unicode(1)),
+        sa.Column('category', sa.Unicode(20)),
         sa.Column('unit', sa.Unicode(10)),
         sa.Column('cost', sa.Numeric(precision=10, scale=2)),
         sa.Column('currency', sa.Unicode(3)),

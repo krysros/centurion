@@ -13,17 +13,21 @@ from wtforms import (
 )
 
 CATEGORIES = [
-    ('A', 'RMS'),
-    ('B', 'Bez materiału'),
-    ('R', 'Robocizna'),
-    ('M', 'Materiał'),
-    ('S', 'Sprzęt'),
+    ('RMS', 'RMS'),
+    ('Bez materiału', 'Bez materiału'),
+    ('Robocizna', 'Robocizna'),
+    ('Materiał', 'Materiał'),
+    ('Sprzęt', 'Sprzęt'),
 ]
 
 CURRENCIES = [
     ('PLN', 'PLN'),
     ('EUR', 'EUR'),
     ('USD', 'USD'),
+]
+
+EMPTY = [
+    ('0', ''),
 ]
 
 
@@ -105,13 +109,13 @@ class PriceForm(Form):
 
 
 class SelectForm(Form):
-    name = SelectField('Nazwa', choices=[('0', '')])
-    category = SelectField('Kategoria', choices=CATEGORIES)
-    unit = SelectField('Jednostka', choices=[('0', '')])
-    currency = SelectField('Waluta', choices=CURRENCIES)
-    company = SelectField('Firma', choices=[('0', '')])
-    project = SelectField('Projekt', choices=[('0', '')])
-    city = SelectField('Miasto', choices=[('0', '')])
+    name = SelectField('Nazwa', choices=EMPTY)
+    category = SelectField('Kategoria', choices=EMPTY)
+    unit = SelectField('Jednostka', choices=EMPTY)
+    currency = SelectField('Waluta', choices=EMPTY)
+    company = SelectField('Firma', choices=EMPTY)
+    project = SelectField('Projekt', choices=EMPTY)
+    city = SelectField('Miasto', choices=EMPTY)
 
     hidden_name = HiddenField('Nazwa')
     hidden_category = HiddenField('Kategoria')

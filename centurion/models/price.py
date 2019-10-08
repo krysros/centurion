@@ -16,7 +16,7 @@ class Price(Base):
     __tablename__ = 'price'
     id = Column(Integer, primary_key=True)
     name = Column(Unicode(200))
-    category = Column(Unicode(1))
+    category = Column(Unicode(20))
     unit = Column(Unicode(10))
     cost = Column(Numeric(precision=10, scale=2))
     currency = Column(Unicode(3))

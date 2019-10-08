@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-	// Use select2 with bootstrap4 theme for all select elements.
 	$('select').select2({
 		theme: 'bootstrap4',
 		language: 'pl',
@@ -27,17 +26,32 @@ $(document).ready(function() {
 		});
 	};
 
-	var selectors = [$('.select-name'), $('.select-unit'), $('.select-company'), $('.select-project'), $('.select-city')];
+	var selectors = [
+		$('.select-name'),
+		$('.select-category'),
+		$('.select-unit'),
+		$('.select-currency'),
+		$('.select-company'),
+		$('.select-project'),
+		$('.select-city')
+	];
+
 	selectors.map(autocomplete);
 
+	var hidden_fields = [
+		$('#hidden_name'),
+		$('#hidden_category'),
+		$('#hidden_unit'),
+		$('#hidden_currency'),
+		$('#hidden_company'),
+		$('#hidden_project'),
+		$('#hidden_city'),
+	];
+
 	$('.select-button').click(function() {
-		$('#hidden_name').val($('.select-name').select2('data')[0].text);
-		$('#hidden_category').val($('.select-category').val());
-		$('#hidden_unit').val($('.select-unit').select2('data')[0].text);
-		$('#hidden_currency').val($('.select-currency').val());
-		$('#hidden_company').val($('.select-company').select2('data')[0].text);
-		$('#hidden_project').val($('.select-project').select2('data')[0].text);
-		$('#hidden_city').val($('.select-city').select2('data')[0].text);
+		for (var i = 0; i < selectors.length; i++) {
+			hidden_fields[i].val(selectors[i].select2('data')[0].text);
+		}
 	});
 
 });
