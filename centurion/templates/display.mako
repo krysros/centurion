@@ -1,6 +1,6 @@
 <%inherit file="layout.mako"/>
 
-<div class="container main">
+<div class="container">
   <h2>${price.name}</h2>
   <h5>Cena</h5>
   <ul>

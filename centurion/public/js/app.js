@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	$('select').select2({
-		theme: 'bootstrap4',
+		theme: 'bootstrap-5',
 		language: 'pl',
 	});
 
@@ -21,7 +21,7 @@ $(document).ready(function() {
 				cache: true
 			},
 			minimumInputLength: 1,
-			theme: 'bootstrap4',
+			theme: 'bootstrap-5',
 			language: 'pl',
 		});
 	};

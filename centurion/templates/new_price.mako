@@ -1,60 +1,54 @@
 <%inherit file="layout.mako"/>
+<%include file="errors.mako"/>
 
-<div class="container main">
-  <%include file="errors.mako"/>
+<div class="container">
   <h2>Nowa cena</h2>
   <form method="post" action="add">
-    <div class="form-group">
-      ${form.name.label}
-      ${form.name(class_="form-control")}
-    </div>
-    <div class="row">
+    <div class="row my-3">
       <div class="col">
-        <div class="form-group">
-          ${form.category.label}
-          ${form.category(class_="form-control")}
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-group">
-          ${form.unit.label}
-          ${form.unit(class_="form-control")}
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-group">
-          ${form.cost.label}
-          ${form.cost(class_="form-control", type="number", step="0.01")}
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-group">
-          ${form.currency.label}
-          ${form.currency(class_="form-control")}
-        </div>
+        ${form.name.label}
+        ${form.name(class_="form-control")}
       </div>
     </div>
-    <div class="form-group">
-      ${form.company.label}
-      ${form.company(class_="form-control")}
-    </div>
-    <div class="row">
+    <div class="row my-3">
       <div class="col">
-        <div class="form-group">
-          ${form.project.label}
-          ${form.project(class_="form-control")}
-        </div>
+        ${form.category.label}
+        ${form.category(class_="form-control")}
       </div>
       <div class="col">
-        <div class="form-group">
-          ${form.city.label}
-          ${form.city(class_="form-control")}
-        </div>
+        ${form.unit.label}
+        ${form.unit(class_="form-control")}
+      </div>
+      <div class="col">
+        ${form.cost.label}
+        ${form.cost(class_="form-control", type="number", step="0.01")}
+      </div>
+      <div class="col">
+        ${form.currency.label}
+        ${form.currency(class_="form-control")}
       </div>
     </div>
-    <div class="form-group">
-      ${form.description.label}
-      ${form.description(class_="form-control")}
+    <div class="row my-3">
+      <div class="col">
+        ${form.company.label}
+        ${form.company(class_="form-control")}
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col">
+        ${form.project.label}
+        ${form.project(class_="form-control")}
+      </div>
+      <div class="col">
+        ${form.city.label}
+        ${form.city(class_="form-control")}
+      </div>
+    </div>
+    <div class="row my-3">
+      <div class="col">
+        ${form.description.label}
+        ${form.description(class_="form-control")}
+      </div>
     </div>
     <button type="submit" class="btn btn-primary">Dodaj</button>
   </form>
