@@ -15,5 +15,4 @@ class CityView(BaseView):
         query = self.session.query(Price)
         prices = query.filter(Price.city == name).order_by(Price.timestamp.desc())
         template = get_template('prices.mako')
-        return template.render(prices=prices,
-                               categories=self.categories, alphabet=self.alphabet)
+        return template.render(prices=prices, categories=self.categories)

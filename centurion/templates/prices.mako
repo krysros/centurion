@@ -1,17 +1,6 @@
 ﻿<%inherit file="layout.mako"/>
 
 <div class="container">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      % for letter in alphabet:
-        % if letter == active:
-          <li class="breadcrumb-item active">${letter.upper()}</li>
-        % else:
-          <li class="breadcrumb-item"><a href="../price/browse?active=${letter}">${letter.upper()}</a></li>
-        % endif
-      % endfor
-    </ol>
-  </nav>
   <div class="table-responsive">
     <table class="table table-striped">
       <thead>
@@ -35,7 +24,7 @@
           <td>${price.unit}</td>
           <td>${price.cost}</td>
           <td>${price.currency}</td>
-          <td>${price.timestamp.strftime('%Y-%m-%d')}</td>
+          <td>${price.timestamp.strftime('%Y-%m-%d %H:%M:%S')}</td>
           <td><a href="../price/delete?id=${price.id}">Usuń</a></td>
         </tr>
       % endfor

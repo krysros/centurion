@@ -39,13 +39,11 @@ class PriceView(BaseView):
         return template.render(price=price, categories=self.categories)
 
     @cherrypy.expose
-    def browse(self, active='a'):
+    def browse(self, sort='timestamp'):
         query = self.session.query(Price)
-        prices = query.filter(Price.name.ilike(active.lower() + '%')).\
-            order_by(Price.name)
+        prices = query.order_by(getattr(Price, sort).desc())
         template = get_template('prices.mako')
-        return template.render(prices=prices, active=active,
-                               categories=self.categories, alphabet=self.alphabet)
+        return template.render(prices=prices, categories=self.categories)
 
     @cherrypy.expose
     def search(self, q=None):
@@ -53,8 +51,7 @@ class PriceView(BaseView):
         prices = query.filter(Price.name.ilike('%' + q + '%')).\
             order_by(Price.name)
         template = get_template('prices.mako')
-        return template.render(prices=prices,
-                               categories=self.categories, alphabet=self.alphabet)
+        return template.render(prices=prices, categories=self.categories)
 
     @cherrypy.expose
     def select(self, **kwargs):
@@ -73,7 +70,6 @@ class PriceView(BaseView):
             query = self.session.query(Price)
             prices = query.filter(*criterion)
             template = get_template('prices.mako')
-            return template.render(prices=prices,
-                                   categories=self.categories, alphabet=self.alphabet)
+            return template.render(prices=prices, categories=self.categories)
         template = get_template('select.mako')
         return template.render(form=form)
