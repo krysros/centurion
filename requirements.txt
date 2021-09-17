@@ -1,4 +1,3 @@
 cherrypy
 alembic
-psycopg2
 wtforms
