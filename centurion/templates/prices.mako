@@ -20,12 +20,12 @@
           <td><a href="../price/display?id=${price.id}"><strong>${price.name}</strong></a><br>
             <small><a href="../company?name=${price.company}">${price.company}</a> &#8594; <a href="../project?name=${price.project}">${price.project}</a> &#8594; <a href="../city?name=${price.city}">${price.city}</a></small>
           </td>
-          <td>${categories.get(price.category)}</td>
-          <td>${price.unit}</td>
-          <td>${price.cost}</td>
-          <td>${price.currency}</td>
-          <td>${price.timestamp.strftime('%Y-%m-%d %H:%M:%S')}</td>
-          <td><a href="../price/delete?id=${price.id}">Usuń</a></td>
+          <td class="align-middle">${categories.get(price.category)}</td>
+          <td class="align-middle">${price.unit}</td>
+          <td class="align-middle">${price.cost}</td>
+          <td class="align-middle">${price.currency}</td>
+          <td class="align-middle">${price.timestamp.strftime('%Y-%m-%d %H:%M:%S')}</td>
+          <td class="align-middle">🗑️ <a href="../price/delete?id=${price.id}">Usuń</a></td>
         </tr>
       % endfor
       </tbody>
