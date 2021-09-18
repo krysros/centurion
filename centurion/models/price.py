@@ -1,5 +1,4 @@
 import datetime
-
 from sqlalchemy import (
     Column,
     Integer,
@@ -8,8 +7,9 @@ from sqlalchemy import (
     DateTime,
     Text,
     )
+from sqlalchemy.ext.declarative import declarative_base
 
-from .meta import Base
+Base = declarative_base()
 
 
 class Price(Base):
