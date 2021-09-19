@@ -1,4 +1,5 @@
 import cherrypy
+from sqlalchemy import select
 from centurion.lookup import get_template
 from centurion.models import Price
 from centurion.forms import InputDict, PriceForm, SelectForm
@@ -15,43 +16,53 @@ class PriceView(BaseView):
         if cherrypy.request.method == 'POST' and form.validate():
             item = Price(**kwargs)
             form.populate_obj(item)
-            self.session.add(item)
+            with self.session(future=True) as session:
+                session.add(item)
+                session.commit()
             raise cherrypy.HTTPRedirect('/price/browse')
         template = get_template('new_price.mako')
         return template.render(form=form)
 
     @cherrypy.expose
     def delete(self, id):
-        query = self.session.query(Price)
-        price = query.filter_by(id=id).one_or_none()
-        if not price:
-            return self.default()
-        self.session.delete(price)
-        raise cherrypy.HTTPRedirect('/')
+        with self.session(future=True) as session:
+            price = session.execute(
+                select(Price).filter_by(id=id)
+            ).scalar_one_or_none()
+            if not price:
+                return self.default()
+            session.delete(price)
+            session.commit()
+            raise cherrypy.HTTPRedirect('/')
 
     @cherrypy.expose
     def display(self, id):
-        query = self.session.query(Price)
-        price = query.filter_by(id=id).one_or_none()
-        if not price:
-            return self.default()
-        template = get_template('display.mako')
-        return template.render(price=price, categories=self.categories)
+        with self.session(future=True) as session:
+            price = session.execute(
+                select(Price).filter_by(id=id)
+            ).scalar_one_or_none()
+            if not price:
+                return self.default()
+            template = get_template('display.mako')
+            return template.render(price=price, categories=self.categories)
 
     @cherrypy.expose
     def browse(self, sort='timestamp'):
-        query = self.session.query(Price)
-        prices = query.order_by(getattr(Price, sort).desc())
-        template = get_template('prices.mako')
-        return template.render(prices=prices, categories=self.categories)
+        with self.session(future=True) as session:
+            prices = session.execute(
+                select(Price).order_by(getattr(Price, sort).desc())
+            ).scalars()
+            template = get_template('prices.mako')
+            return template.render(prices=prices, categories=self.categories)
 
     @cherrypy.expose
     def search(self, q=None):
-        query = self.session.query(Price)
-        prices = query.filter(Price.name.ilike('%' + q + '%')).\
-            order_by(Price.name)
-        template = get_template('prices.mako')
-        return template.render(prices=prices, categories=self.categories)
+        with self.session(future=True) as session:
+            prices = session.execute(
+                select(Price).filter(Price.name.ilike('%' + q + '%')).order_by(Price.name)
+            ).scalars()
+            template = get_template('prices.mako')
+            return template.render(prices=prices, categories=self.categories)
 
     @cherrypy.expose
     def select(self, **kwargs):
@@ -67,9 +78,11 @@ class PriceView(BaseView):
                 'city': form.hidden_city.data,
             }
             criterion = [getattr(Price, k) == v for k, v in data.items() if v]
-            query = self.session.query(Price)
-            prices = query.filter(*criterion)
-            template = get_template('prices.mako')
-            return template.render(prices=prices, categories=self.categories)
+            with self.session(future=True) as session:
+                prices = session.execute(
+                    select(Price).filter(*criterion)
+                ).scalars()
+                template = get_template('prices.mako')
+                return template.render(prices=prices, categories=self.categories)
         template = get_template('select.mako')
         return template.render(form=form)

@@ -10,17 +10,15 @@ db_config = configparser.ConfigParser()
 db_config.read('alembic.ini')
 connection_string = db_config['alembic']['sqlalchemy.url']
 engine = create_engine(connection_string)
-Session = sessionmaker(bind=engine, autocommit=True)
+Session = sessionmaker(engine)
 
 if __name__ == '__main__':
-    session = Session()
-
     root = Root()
-    root.price = PriceView(session)
-    root.company = CompanyView(session)
-    root.project = ProjectView(session)
-    root.city = CityView(session)
-    root.select2 = Select2View(session)
+    root.price = PriceView(Session)
+    root.company = CompanyView(Session)
+    root.project = ProjectView(Session)
+    root.city = CityView(Session)
+    root.select2 = Select2View(Session)
 
     config = {
         'global': {
