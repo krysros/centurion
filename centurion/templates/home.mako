@@ -1,10 +1,8 @@
 <%inherit file="layout.mako"/>
 
-<div class="container mb-4">
-  <div class="bg-light p-5 rounded">
-    <h1 class="display-5 fw-bold">Centurion</h1>
-    <p class="col-md-8 fs-4">Ceny materiałów budowlanych 🧱, pracy sprzętu 🛠️, stawki robocizny 👷.</p>
-  </div>
+<div class="container mb-5">
+  <h1>Centurion</h1>
+  <p class="col-md-8 fs-4">Ceny 🧱 materiałów budowlanych, 🛠️ pracy sprzętu, 👷 stawki robocizny.</p>
 </div>
 
 <div class="container">
