@@ -2,7 +2,7 @@
 
 <div class="container mb-5">
   <h1>Centurion</h1>
-  <p class="col-md-8 fs-4">Ceny 🧱 materiałów budowlanych, 🛠️ pracy sprzętu, 👷 stawki robocizny.</p>
+  <p class="fs-4">Ceny 🧱 materiałów budowlanych, 🛠️ pracy sprzętu, 👷 stawki robocizny.</p>
 </div>
 
 <div class="container">
