@@ -13,19 +13,21 @@
     <div class="row my-3">
       <div class="col">
         ${form.category.label}
-        ${form.category(class_="form-control")}
+        ${form.category(class_="form-select")}
       </div>
       <div class="col">
         ${form.unit.label}
         ${form.unit(class_="form-control")}
       </div>
+    </div>
+    <div class="row my-3">
       <div class="col">
         ${form.cost.label}
         ${form.cost(class_="form-control", type="number", step="0.01")}
       </div>
       <div class="col">
         ${form.currency.label}
-        ${form.currency(class_="form-control")}
+        ${form.currency(class_="form-select")}
       </div>
     </div>
     <div class="row my-3">

@@ -3,6 +3,7 @@ $(document).ready(function() {
 	$('select').select2({
 		theme: 'bootstrap-5',
 		language: 'pl',
+		width: null,
 	});
 
 	function autocomplete(selector) {
@@ -23,6 +24,7 @@ $(document).ready(function() {
 			minimumInputLength: 1,
 			theme: 'bootstrap-5',
 			language: 'pl',
+			width: null,
 		});
 	};
 
