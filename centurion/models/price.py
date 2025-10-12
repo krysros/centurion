@@ -1,39 +1,27 @@
 import datetime
-from sqlalchemy import (
-    Column,
-    Integer,
-    Unicode,
-    Numeric,
-    DateTime,
-    Text,
-    )
-from sqlalchemy.ext.declarative import declarative_base
+from decimal import Decimal
+from typing import Optional
+
+from sqlalchemy import Integer, Numeric
+from sqlalchemy.orm import declarative_base, Mapped, mapped_column
 
 Base = declarative_base()
 
 
 class Price(Base):
-    __tablename__ = 'price'
-    id = Column(Integer, primary_key=True)
-    name = Column(Unicode(200))
-    category = Column(Unicode(20))
-    unit = Column(Unicode(10))
-    cost = Column(Numeric(precision=10, scale=2))
-    currency = Column(Unicode(3))
-    company = Column(Unicode(100))
-    project = Column(Unicode(100))
-    city = Column(Unicode(100))
-    description = Column(Text())
-    timestamp = Column(DateTime, default=datetime.datetime.now)
+    __tablename__ = "price"
 
-    def __init__(self, name, category, unit, cost, currency,
-                 company, project, city, description):
-        self.name = name
-        self.category = category
-        self.unit = unit
-        self.cost = cost
-        self.currency = currency
-        self.company = company
-        self.project = project
-        self.city = city
-        self.description = description
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    name: Mapped[str]
+    category: Mapped[str]
+    unit: Mapped[str]
+    cost: Mapped[Decimal] = mapped_column(Numeric(precision=10, scale=2), nullable=False)
+    currency: Mapped[str]
+    company: Mapped[str]
+    project: Mapped[str]
+    city: Mapped[str]
+    description: Mapped[Optional[str]]
+    timestamp: Mapped[datetime.datetime] = mapped_column(default=datetime.datetime.now)
+
+    def __repr__(self) -> str:  # helpful for debugging
+        return f"<Price(id={self.id!r}, name={self.name!r}, cost={self.cost!r})>"

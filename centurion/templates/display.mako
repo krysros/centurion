@@ -1,29 +1,56 @@
 <%inherit file="layout.mako"/>
 
-<div class="container">
-  <h2>${price.name}</h2>
-  <h5>💶 Cena</h5>
-  <ul>
-    <li>Kategoria: ${categories.get(price.category)}</li>
-    <li>Jednostka: ${price.unit}</li>
-    <li>Cena: ${price.cost}</li>
-    <li>Waluta: ${price.currency}</li>
-  </ul>
-  <h5>🏗️ Metadane</h5>
-  <ul>
-    <li>Firma: ${price.company}</li>
-    <li>Projekt: ${price.project}</li>
-    <li>Miasto: ${price.city}</li>
-    <li>Dodano: ${price.timestamp.strftime('%Y-%m-%d %H:%M:%S')}</li>
-  </ul>
-  <h5>📝 Opis</h5>
-  <p>
+<main class="container">
+  <article>
+    <header>
+      <div class="grid">
+        <div>
+          <h4>${price.name}</h4>
+        </div>
+        <div style="text-align: right">
+          <a href="../price/delete?id=${price.id}" class="secondary outline" onclick="return confirm('Czy na pewno chcesz usunąć?')">
+            <i class="bi bi-trash"></i> Usuń
+          </a>
+        </div>
+      </div>
+    </header>
+    <div class="grid">
+      <article>
+        <header>
+          <i class="bi bi-currency-euro"></i> Cena
+        </header>
+        <dl>
+          <dt>Kategoria:</dt>
+          <dd>${categories.get(price.category)}</dd>
+          <dt>Jednostka:</dt>
+          <dd>${price.unit}</dd>
+          <dt>Cena:</dt>
+          <dd>${price.cost} ${price.currency}</dd>
+        </dl>
+      </article>
+      <article>
+        <header>
+          <i class="bi bi-building"></i> Metadane
+        </header>
+        <dl>
+          <dt>Firma:</dt>
+          <dd>${price.company}</dd>
+          <dt>Projekt:</dt>
+          <dd>${price.project}</dd>
+          <dt>Miasto:</dt>
+          <dd>${price.city}</dd>
+          <dt>Dodano:</dt>
+          <dd>${price.timestamp.strftime('%Y-%m-%d %H:%M:%S')}</dd>
+        </dl>
+      </article>
+    </div>
     % if price.description:
-      ${price.description}
-    % else:
-      ---
+    <article>
+      <header>
+        <i class="bi bi-file-text"></i> Opis
+      </header>
+      <p>${price.description}</p>
+    </article>
     % endif
-  </p>
-  <h5>Akcja</h5>
-  🗑️ <a href="../price/delete?id=${price.id}">Usuń</a>
-</div>
+  </article>
+</main>

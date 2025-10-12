@@ -16,31 +16,29 @@ class PriceView(BaseView):
         if cherrypy.request.method == 'POST' and form.validate():
             item = Price(**kwargs)
             form.populate_obj(item)
-            with self.session(future=True) as session:
-                session.add(item)
-                session.commit()
+            # Session is the sessionmaker class passed in; instantiate it here
+            with self.session() as session:
+                with session.begin():
+                    session.add(item)
             raise cherrypy.HTTPRedirect('/price/browse')
         template = get_template('new_price.mako')
         return template.render(form=form)
 
     @cherrypy.expose
     def delete(self, id):
-        with self.session(future=True) as session:
-            price = session.execute(
-                select(Price).filter_by(id=id)
-            ).scalar_one_or_none()
+        with self.session() as session:
+            # use session.get for primary key lookup
+            price = session.get(Price, int(id))
             if not price:
                 return self.default()
-            session.delete(price)
-            session.commit()
+            with session.begin():
+                session.delete(price)
             raise cherrypy.HTTPRedirect('/')
 
     @cherrypy.expose
     def display(self, id):
-        with self.session(future=True) as session:
-            price = session.execute(
-                select(Price).filter_by(id=id)
-            ).scalar_one_or_none()
+        with self.session() as session:
+            price = session.get(Price, int(id))
             if not price:
                 return self.default()
             template = get_template('display.mako')
@@ -48,7 +46,7 @@ class PriceView(BaseView):
 
     @cherrypy.expose
     def browse(self, sort='timestamp'):
-        with self.session(future=True) as session:
+        with self.session() as session:
             prices = session.execute(
                 select(Price).order_by(getattr(Price, sort).desc())
             ).scalars()
@@ -57,7 +55,7 @@ class PriceView(BaseView):
 
     @cherrypy.expose
     def search(self, q=None):
-        with self.session(future=True) as session:
+        with self.session() as session:
             prices = session.execute(
                 select(Price).filter(Price.name.ilike('%' + q + '%')).order_by(Price.name)
             ).scalars()
@@ -78,7 +76,7 @@ class PriceView(BaseView):
                 'city': form.hidden_city.data,
             }
             criterion = [getattr(Price, k) == v for k, v in data.items() if v]
-            with self.session(future=True) as session:
+            with self.session() as session:
                 prices = session.execute(
                     select(Price).filter(*criterion)
                 ).scalars()

@@ -109,13 +109,15 @@ class PriceForm(Form):
 
 
 class SelectForm(Form):
-    name = SelectField('Nazwa', choices=EMPTY)
-    category = SelectField('Kategoria', choices=EMPTY)
-    unit = SelectField('Jednostka', choices=EMPTY)
-    currency = SelectField('Waluta', choices=EMPTY)
-    company = SelectField('Firma', choices=EMPTY)
-    project = SelectField('Projekt', choices=EMPTY)
-    city = SelectField('Miasto', choices=EMPTY)
+    # Use text inputs for client-side autocomplete. We keep hidden_* fields
+    # to carry the final selected values to the server when the form is submitted.
+    name = StringField('Nazwa', filters=[strip_filter])
+    category = StringField('Kategoria', filters=[strip_filter])
+    unit = StringField('Jednostka', filters=[strip_filter])
+    currency = StringField('Waluta', filters=[strip_filter])
+    company = StringField('Firma', filters=[strip_filter])
+    project = StringField('Projekt', filters=[strip_filter])
+    city = StringField('Miasto', filters=[strip_filter])
 
     hidden_name = HiddenField('Nazwa')
     hidden_category = HiddenField('Kategoria')

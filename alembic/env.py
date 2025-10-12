@@ -14,10 +14,13 @@ config = context.config
 fileConfig(config.config_file_name)
 
 # add your model's MetaData object here
-# for 'autogenerate' support
-# from myapp import mymodel
-# target_metadata = mymodel.Base.metadata
-target_metadata = None
+# for 'autogenerate' support - import the project's metadata
+import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from centurion.models import Price
+from centurion.models.price import Base
+target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
@@ -56,10 +59,13 @@ def run_migrations_online():
     and associate a connection with the context.
 
     """
+    # SQLAlchemy 2.x: prefer create_engine with future=True
+    configuration = config.get_section(config.config_ini_section)
     connectable = engine_from_config(
-        config.get_section(config.config_ini_section),
+        configuration,
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
+        # pass future flag if using SQLAlchemy < 2.0 engine_from_config doesn't accept future directly
     )
 
     with connectable.connect() as connection:

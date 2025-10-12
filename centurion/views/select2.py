@@ -10,7 +10,7 @@ class Select2View(object):
     @cherrypy.expose
     @cherrypy.tools.json_out()
     def index(self, name, q=''):
-        with self.session(future=True) as session:
+        with self.session() as session:
             query = session.execute(
                 select(Price).\
                 filter(getattr(Price, name).ilike(f'%{q}%')).\

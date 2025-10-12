@@ -9,8 +9,9 @@ from centurion.views import PriceView, CompanyView, ProjectView, CityView, Selec
 db_config = configparser.ConfigParser()
 db_config.read('alembic.ini')
 connection_string = db_config['alembic']['sqlalchemy.url']
-engine = create_engine(connection_string)
-Session = sessionmaker(engine)
+# Use SQLAlchemy 2.x recommended 'future' flag and bind the engine to the sessionmaker
+engine = create_engine(connection_string, future=True)
+Session = sessionmaker(bind=engine, future=True)
 
 if __name__ == '__main__':
     root = Root()

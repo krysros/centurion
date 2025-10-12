@@ -1,6 +1,6 @@
 <%inherit file="layout.mako"/>
 
-<div class="container mb-5">
+<div class="container">
   <h1>Centurion</h1>
   <p class="fs-4">Ceny 🧱 materiałów budowlanych, 🛠️ pracy sprzętu, 👷 stawki robocizny.</p>
 </div>
@@ -18,6 +18,6 @@
   </div>
   <hr>
   <footer>
-    <p>&copy; KR 2021</p>
+  <p>&copy; KR 2025</p>
   </footer>
 </div>
