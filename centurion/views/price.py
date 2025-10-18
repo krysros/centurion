@@ -16,10 +16,9 @@ class PriceView(BaseView):
         if cherrypy.request.method == 'POST' and form.validate():
             item = Price(**kwargs)
             form.populate_obj(item)
-            # Session is the sessionmaker class passed in; instantiate it here
             with self.session() as session:
-                with session.begin():
-                    session.add(item)
+                session.add(item)
+                session.commit()
             raise cherrypy.HTTPRedirect('/price/browse')
         template = get_template('new_price.mako')
         return template.render(form=form)
@@ -27,12 +26,11 @@ class PriceView(BaseView):
     @cherrypy.expose
     def delete(self, id):
         with self.session() as session:
-            # use session.get for primary key lookup
             price = session.get(Price, int(id))
             if not price:
                 return self.default()
-            with session.begin():
-                session.delete(price)
+            session.delete(price)
+            session.commit()
             raise cherrypy.HTTPRedirect('/')
 
     @cherrypy.expose

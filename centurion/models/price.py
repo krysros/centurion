@@ -22,6 +22,3 @@ class Price(Base):
     city: Mapped[str]
     description: Mapped[Optional[str]]
     timestamp: Mapped[datetime.datetime] = mapped_column(default=datetime.datetime.now)
-
-    def __repr__(self) -> str:  # helpful for debugging
-        return f"<Price(id={self.id!r}, name={self.name!r}, cost={self.cost!r})>"
