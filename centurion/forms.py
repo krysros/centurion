@@ -1,7 +1,6 @@
 from wtforms import (
     DecimalField,
     Form,
-    HiddenField,
     SelectField,
     StringField,
     TextAreaField,
@@ -20,10 +19,6 @@ CURRENCIES = [
     ("PLN", "PLN"),
     ("EUR", "EUR"),
     ("USD", "USD"),
-]
-
-EMPTY = [
-    ("0", ""),
 ]
 
 
@@ -120,8 +115,8 @@ class PriceForm(Form):
 
 
 class SelectForm(Form):
-    # Use text inputs for client-side autocomplete. We keep hidden_* fields
-    # to carry the final selected values to the server when the form is submitted.
+    # Use text inputs for client-side autocomplete. Hidden fields removed;
+    # the server now reads visible inputs only.
     name = StringField("Nazwa", filters=[strip_filter])
     category = SelectField("Kategoria", choices=CATEGORIES)
     unit = StringField("Jednostka", filters=[strip_filter])
@@ -130,10 +125,4 @@ class SelectForm(Form):
     project = StringField("Projekt", filters=[strip_filter])
     city = StringField("Miasto", filters=[strip_filter])
 
-    hidden_name = HiddenField("Nazwa")
-    hidden_category = HiddenField("Kategoria")
-    hidden_unit = HiddenField("Jednostka")
-    hidden_currency = HiddenField("Waluta")
-    hidden_company = HiddenField("Firma")
-    hidden_project = HiddenField("Projekt")
-    hidden_city = HiddenField("Miasto")
+    # Hidden fields removed — we now submit visible text inputs only.

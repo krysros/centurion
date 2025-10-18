@@ -67,16 +67,15 @@ class PriceView(BaseView):
     def select(self, **kwargs):
         form = SelectForm(InputDict(kwargs))
         if cherrypy.request.method == "POST":
-            # Prefer visible text inputs (client-side autocompletes populate them).
-            # Fall back to hidden_* fields if present.
+            # Use the visible text inputs submitted by the client.
             data = {
-                "name": form.name.data or form.hidden_name.data,
-                "category": form.category.data or form.hidden_category.data,
-                "unit": form.unit.data or form.hidden_unit.data,
-                "currency": form.currency.data or form.hidden_currency.data,
-                "company": form.company.data or form.hidden_company.data,
-                "project": form.project.data or form.hidden_project.data,
-                "city": form.city.data or form.hidden_city.data,
+                "name": form.name.data,
+                "category": form.category.data,
+                "unit": form.unit.data,
+                "currency": form.currency.data,
+                "company": form.company.data,
+                "project": form.project.data,
+                "city": form.city.data,
             }
             criterion = [getattr(Price, k) == v for k, v in data.items() if v]
             with self.session() as session:
