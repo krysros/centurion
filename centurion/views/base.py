@@ -1,6 +1,7 @@
 import cherrypy
-from centurion.lookup import get_template
+
 from centurion.forms import CATEGORIES
+from centurion.lookup import get_template
 
 
 class BaseView(object):
@@ -10,5 +11,5 @@ class BaseView(object):
 
     @cherrypy.expose
     def default(self, *args, **kwargs):
-        template = get_template('notfound.mako')
+        template = get_template("notfound.mako")
         return template.render()

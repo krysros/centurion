@@ -3,7 +3,7 @@ from decimal import Decimal
 from typing import Optional
 
 from sqlalchemy import Integer, Numeric
-from sqlalchemy.orm import declarative_base, Mapped, mapped_column
+from sqlalchemy.orm import Mapped, declarative_base, mapped_column
 
 Base = declarative_base()
 
@@ -15,7 +15,9 @@ class Price(Base):
     name: Mapped[str]
     category: Mapped[str]
     unit: Mapped[str]
-    cost: Mapped[Decimal] = mapped_column(Numeric(precision=10, scale=2), nullable=False)
+    cost: Mapped[Decimal] = mapped_column(
+        Numeric(precision=10, scale=2), nullable=False
+    )
     currency: Mapped[str]
     company: Mapped[str]
     project: Mapped[str]

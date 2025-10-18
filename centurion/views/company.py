@@ -1,5 +1,6 @@
 import cherrypy
 from sqlalchemy import select
+
 from centurion.lookup import get_template
 from centurion.models import Price
 from centurion.views import BaseView
@@ -15,7 +16,9 @@ class CompanyView(BaseView):
             return self.default()
         with self.session(future=True) as session:
             prices = session.execute(
-                select(Price).filter(Price.company == name).order_by(Price.timestamp.desc())
+                select(Price)
+                .filter(Price.company == name)
+                .order_by(Price.timestamp.desc())
             ).scalars()
-            template = get_template('prices.mako')
+            template = get_template("prices.mako")
             return template.render(prices=prices, categories=self.categories)

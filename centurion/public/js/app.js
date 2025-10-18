@@ -17,7 +17,7 @@ $(document).ready(function() {
 			if (fetchTimer) clearTimeout(fetchTimer);
 			if (!q) return;
 			fetchTimer = setTimeout(function() {
-				fetch('/select2/?name=' + encodeURIComponent(fieldName) + '&q=' + encodeURIComponent(q), {
+				fetch('/autocomplete/?name=' + encodeURIComponent(fieldName) + '&q=' + encodeURIComponent(q), {
 					method: 'GET',
 					headers: { 'Accept': 'application/json' }
 				}).then(function(resp) { return resp.json(); })
