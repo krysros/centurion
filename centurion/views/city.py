@@ -14,7 +14,7 @@ class CityView(BaseView):
     def index(self, name=None):
         if not name:
             return self.default()
-        with self.session(future=True) as session:
+        with self.session() as session:
             prices = session.execute(
                 select(Price)
                 .filter(Price.city == name)
