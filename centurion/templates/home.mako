@@ -1,23 +1,11 @@
 <%inherit file="layout.mako"/>
 
-<div class="container">
-  <h1>Centurion</h1>
-  <p class="fs-4">Ceny 🧱 materiałów budowlanych, 🛠️ pracy sprzętu, 👷 stawki robocizny.</p>
-</div>
+<form action="/price/search" method="get" role="search">
+  <input type="search" name="q" placeholder="Szukaj" aria-label="Search">
+</form>
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h2>⚡ Baza danych</h2>
-      <p>Aplikacja umożliwia błyskawiczny dostęp do cen RMS. Pozycje dodawane do bazy danych poza opisem, jednostką i walutą zawierają również metadane – nazwę firmy oferującej cenę, nazwę projektu dla którego firma złożyła ofertę za określoną cenę oraz miasto w którym realizowana jest inwestycja. </p>
-    </div>
-    <div class="col">
-      <h2>🔎 Wyszukiwarka</h2>
-      <p>Aplikacja udostępnia dwie metody wyszukiwania pozycji cenowych. Prosta wyszukiwarka wyświetla pozycje zawierające w nazwie podany ciąg znaków. Przy pomocy formularza wyboru można wyświetlić pozycje spełniające określone kryteria. Autouzupełnianie ułatwia definiowanie kryteriów. </p>
-    </div>
-  </div>
-  <hr>
-  <footer>
-  <p>&copy; KR 2025</p>
-  </footer>
-</div>
+<h2>⚡ Baza RMS</h2>
+<p>Błyskawiczny dostęp do cen 👷 robocizny, 🧱 materiałów i 🛠️ sprzętu. Pozycje dodawane do bazy danych poza opisem, jednostką i walutą zawierają również metadane – firmę oferującą cenę, nazwę projektu oraz miasto w którym realizowana jest inwestycja. </p>
+
+<h2>🔎 Wyszukiwarka cen</h2>
+<p>Dostępne są dwie metody wyszukiwania cen: wyszukiwarka ciągu znaków w nazwie pozycji oraz formularz wyboru pozycji spełniających określone kryteria. Autouzupełnianie ułatwia definiowanie kryteriów. </p>
