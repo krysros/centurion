@@ -36,13 +36,13 @@ if __name__ == "__main__":
             "server.thread_pool": 8,
             "engine.autoreload.on": True,
         },
-        "/": {
-            "tools.staticdir.root": os.path.abspath(os.getcwd()),
-        },
-        "/static": {
-            "tools.staticdir.on": True,
-            "tools.staticdir.dir": "centurion/public",
-        },
+        # "/": {
+        #     "tools.staticdir.root": os.path.abspath(os.getcwd()),
+        # },
+        # "/static": {
+        #     "tools.staticdir.on": True,
+        #     "tools.staticdir.dir": "centurion/public",
+        # },
     }
 
     cherrypy.quickstart(root, config=config)
