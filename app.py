@@ -3,8 +3,14 @@ import configparser
 import cherrypy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from centurion.views import Root
-from centurion.views import PriceView, CompanyView, ProjectView, CityView, Select2View
+from centurion.views import (
+    Root,
+    PriceView,
+    CompanyView,
+    ProjectView,
+    CityView,
+    Select2View,
+)
 
 db_config = configparser.ConfigParser()
 db_config.read('alembic.ini')
