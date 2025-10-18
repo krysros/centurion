@@ -8,8 +8,7 @@
     <meta name="author" content="Krystian Rosiński">
     <title>Centurion</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css">
-  <script src="https://unpkg.com/htmx.org@2.0.7"></script>
-  <script src="/static/js/app.js"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.7"></script>
   </head>
   <body>
     <header>
