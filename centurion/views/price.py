@@ -67,7 +67,6 @@ class PriceView(BaseView):
     def select(self, **kwargs):
         form = SelectForm(InputDict(kwargs))
         if cherrypy.request.method == "POST":
-            # Use the visible text inputs submitted by the client.
             data = {
                 "name": form.name.data,
                 "category": form.category.data,

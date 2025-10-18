@@ -115,8 +115,6 @@ class PriceForm(Form):
 
 
 class SelectForm(Form):
-    # Use text inputs for client-side autocomplete. Hidden fields removed;
-    # the server now reads visible inputs only.
     name = StringField("Nazwa", filters=[strip_filter])
     category = SelectField("Kategoria", choices=CATEGORIES)
     unit = StringField("Jednostka", filters=[strip_filter])
@@ -124,5 +122,3 @@ class SelectForm(Form):
     company = StringField("Firma", filters=[strip_filter])
     project = StringField("Projekt", filters=[strip_filter])
     city = StringField("Miasto", filters=[strip_filter])
-
-    # Hidden fields removed — we now submit visible text inputs only.
