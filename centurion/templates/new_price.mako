@@ -23,7 +23,7 @@
         % endif
         <datalist id="list-unit"></datalist>
         ${form.cost.label}
-        ${form.cost(aria_invalid='' + ('true' if form.cost.errors else ''))}
+        ${form.cost(aria_invalid='' + ('true' if form.cost.errors else ''), type="number", step="0.01")}
         % if form.cost.errors:
         <small>${' '.join(form.cost.errors)}</small>
         % endif

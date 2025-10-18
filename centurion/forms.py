@@ -123,9 +123,9 @@ class SelectForm(Form):
     # Use text inputs for client-side autocomplete. We keep hidden_* fields
     # to carry the final selected values to the server when the form is submitted.
     name = StringField("Nazwa", filters=[strip_filter])
-    category = StringField("Kategoria", filters=[strip_filter])
+    category = SelectField("Kategoria", choices=CATEGORIES)
     unit = StringField("Jednostka", filters=[strip_filter])
-    currency = StringField("Waluta", filters=[strip_filter])
+    currency = SelectField("Waluta", choices=CURRENCIES)
     company = StringField("Firma", filters=[strip_filter])
     project = StringField("Projekt", filters=[strip_filter])
     city = StringField("Miasto", filters=[strip_filter])
