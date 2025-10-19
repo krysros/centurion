@@ -1,5 +1,4 @@
 import configparser
-# import os
 
 import cherrypy
 from sqlalchemy import create_engine
@@ -13,6 +12,9 @@ from centurion.views import (
     ProjectView,
     Root,
 )
+
+# import os
+
 
 db_config = configparser.ConfigParser()
 db_config.read("alembic.ini")

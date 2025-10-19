@@ -22,12 +22,16 @@ class AutocompleteView(object):
         # Determine attribute and query string from parameters
         if attr is None:
             # try legacy 'name' param
-            attr = kwargs.get('name') or 'name'
+            attr = kwargs.get("name") or "name"
 
         if q is None:
             # htmx sends input values as params under the input name; try to
             # fall back to request params.
-            q = cherrypy.request.params.get('q') or cherrypy.request.params.get(attr) or ""
+            q = (
+                cherrypy.request.params.get("q")
+                or cherrypy.request.params.get(attr)
+                or ""
+            )
 
         with self.session() as session:
             stmt = (
@@ -40,5 +44,5 @@ class AutocompleteView(object):
             for row in query:
                 text = getattr(row, attr)
                 parts.append(f'<option value="{text}" data-id="{row.id}"></option>')
-            cherrypy.response.headers['Content-Type'] = 'text/html; charset=utf-8'
+            cherrypy.response.headers["Content-Type"] = "text/html; charset=utf-8"
             return "\n".join(parts)

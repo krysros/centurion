@@ -1,10 +1,4 @@
-from wtforms import (
-    DecimalField,
-    Form,
-    SelectField,
-    StringField,
-    TextAreaField,
-)
+from wtforms import DecimalField, Form, SelectField, StringField, TextAreaField
 from wtforms.validators import InputRequired, Length
 
 CATEGORIES = [
