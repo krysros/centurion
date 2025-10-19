@@ -5,32 +5,42 @@
     <article>
       <header>Cena</header>
         ${form.name.label}
-        ${form.name(aria_invalid='' + ('true' if form.name.errors else ''), list='list-name', **{"hx-get": "/autocomplete?attr=name", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-name", "hx-swap": "innerHTML"})}
         % if form.name.errors:
-        <small>${' '.join(form.name.errors)}</small>
+        ${form.name(aria_invalid="true", list="list-name", **{"hx-get": "/autocomplete?attr=name", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-name", "hx-swap": "innerHTML"})}
+        <small>${" ".join(form.name.errors)}</small>
+        % else:
+        ${form.name(list="list-name", **{"hx-get": "/autocomplete?attr=name", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-name", "hx-swap": "innerHTML"})}
         % endif
         <datalist id="list-name"></datalist>
         ${form.category.label}
-        ${form.category(aria_invalid='' + ('true' if form.category.errors else ''), list='list-category', **{"hx-get": "/autocomplete?attr=category", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-category", "hx-swap": "innerHTML"})}
         % if form.category.errors:
-        <small>${' '.join(form.category.errors)}</small>
+        ${form.category(aria_invalid="true", list="list-category", **{"hx-get": "/autocomplete?attr=category", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-category", "hx-swap": "innerHTML"})}
+        <small>${" ".join(form.category.errors)}</small>
+        % else:
+        ${form.category(list="list-category", **{"hx-get": "/autocomplete?attr=category", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-category", "hx-swap": "innerHTML"})}
         % endif
         <datalist id="list-category"></datalist>
         ${form.unit.label}
-        ${form.unit(aria_invalid='' + ('true' if form.unit.errors else ''), list='list-unit', **{"hx-get": "/autocomplete?attr=unit", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-unit", "hx-swap": "innerHTML"})}
         % if form.unit.errors:
-        <small>${' '.join(form.unit.errors)}</small>
+        ${form.unit(aria_invalid="true", list="list-unit", **{"hx-get": "/autocomplete?attr=unit", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-unit", "hx-swap": "innerHTML"})}
+        <small>${" ".join(form.unit.errors)}</small>
+        % else:
+        ${form.unit(list="list-unit", **{"hx-get": "/autocomplete?attr=unit", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-unit", "hx-swap": "innerHTML"})}
         % endif
         <datalist id="list-unit"></datalist>
         ${form.cost.label}
-        ${form.cost(aria_invalid='' + ('true' if form.cost.errors else ''), type="number", step="0.01")}
         % if form.cost.errors:
-        <small>${' '.join(form.cost.errors)}</small>
+        ${form.cost(aria_invalid="true", type="number", step="0.01")}
+        <small>${" ".join(form.cost.errors)}</small>
+        % else:
+        ${form.cost(type="number", step="0.01")}
         % endif
         ${form.currency.label}
-        ${form.currency(aria_invalid='' + ('true' if form.currency.errors else ''), list='list-currency', **{"hx-get": "/autocomplete?attr=currency", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-currency", "hx-swap": "innerHTML"})}
         % if form.currency.errors:
-        <small>${' '.join(form.currency.errors)}</small>
+        ${form.currency(aria_invalid="true", list="list-currency", **{"hx-get": "/autocomplete?attr=currency", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-currency", "hx-swap": "innerHTML"})}
+        <small>${" ".join(form.currency.errors)}</small>
+        % else:
+        ${form.currency(list="list-currency", **{"hx-get": "/autocomplete?attr=currency", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-currency", "hx-swap": "innerHTML"})}
         % endif
         <datalist id="list-currency"></datalist>
     </article>
@@ -39,21 +49,27 @@
     <article>
       <header>Metadane</header>
         ${form.company.label}
-        ${form.company(aria_invalid='' + ('true' if form.company.errors else ''), list='list-company', **{"hx-get": "/autocomplete?attr=company", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-company", "hx-swap": "innerHTML"})}
         % if form.company.errors:
-        <small>${' '.join(form.company.errors)}</small>
+        ${form.company(aria_invalid="true", list="list-company", **{"hx-get": "/autocomplete?attr=company", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-company", "hx-swap": "innerHTML"})}
+        <small>${" ".join(form.company.errors)}</small>
+        % else:
+        ${form.company(list="list-company", **{"hx-get": "/autocomplete?attr=company", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-company", "hx-swap": "innerHTML"})}
         % endif
         <datalist id="list-company"></datalist>
         ${form.project.label}
-        ${form.project(aria_invalid='' + ('true' if form.project.errors else ''), list='list-project', **{"hx-get": "/autocomplete?attr=project", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-project", "hx-swap": "innerHTML"})}
         % if form.project.errors:
-        <small>${' '.join(form.project.errors)}</small>
+        ${form.project(aria_invalid="true", list="list-project", **{"hx-get": "/autocomplete?attr=project", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-project", "hx-swap": "innerHTML"})}
+        <small>${" ".join(form.project.errors)}</small>
+        % else:
+        ${form.project(list="list-project", **{"hx-get": "/autocomplete?attr=project", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-project", "hx-swap": "innerHTML"})}
         % endif
         <datalist id="list-project"></datalist>
         ${form.city.label}
-        ${form.city(aria_invalid='' + ('true' if form.city.errors else ''), list='list-city', **{"hx-get": "/autocomplete?attr=city", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-city", "hx-swap": "innerHTML"})}
         % if form.city.errors:
-        <small>${' '.join(form.city.errors)}</small>
+        ${form.city(aria_invalid="true", list="list-city", **{"hx-get": "/autocomplete?attr=city", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-city", "hx-swap": "innerHTML"})}
+        <small>${" ".join(form.city.errors)}</small>
+        % else:
+        ${form.city(list="list-city", **{"hx-get": "/autocomplete?attr=city", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-city", "hx-swap": "innerHTML"})}
         % endif
         <datalist id="list-city"></datalist>
     </article>
