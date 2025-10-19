@@ -10,18 +10,11 @@ class AutocompleteView(object):
 
     @cherrypy.expose
     def index(self, attr=None, q=None, **kwargs):
-        """
-        Return HTML <option> fragments for the given `attr` (model column).
-
-        Expected params:
-        - attr: the model attribute to search (e.g. 'name', 'company')
-        - q: optional query string
-        """
         if attr is None:
-            attr = kwargs.get("name") or "name"
+            return ""
 
         if q is None:
-            q = cherrypy.request.params.get("q", "")
+            q = kwargs.get(attr)
 
         with self.session() as session:
             stmt = (
@@ -33,6 +26,6 @@ class AutocompleteView(object):
             parts = []
             for row in query:
                 text = getattr(row, attr)
-                parts.append(f'<option value="{text}" data-id="{row.id}"></option>')
+                parts.append(f'<option value="{text}"></option>')
             cherrypy.response.headers["Content-Type"] = "text/html; charset=utf-8"
             return "\n".join(parts)
