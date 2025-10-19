@@ -15,23 +15,13 @@ class AutocompleteView(object):
 
         Expected params:
         - attr: the model attribute to search (e.g. 'name', 'company')
-        - q: optional query string; if not provided, we also look for the
-             request param with the same name as the input (htmx may send
-             it as a param).
+        - q: optional query string
         """
-        # Determine attribute and query string from parameters
         if attr is None:
-            # try legacy 'name' param
             attr = kwargs.get("name") or "name"
 
         if q is None:
-            # htmx sends input values as params under the input name; try to
-            # fall back to request params.
-            q = (
-                cherrypy.request.params.get("q")
-                or cherrypy.request.params.get(attr)
-                or ""
-            )
+            q = cherrypy.request.params.get("q", "")
 
         with self.session() as session:
             stmt = (
