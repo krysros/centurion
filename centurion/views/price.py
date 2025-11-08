@@ -1,3 +1,4 @@
+from decimal import Decimal
 import cherrypy
 from sqlalchemy import select
 
@@ -12,10 +13,35 @@ class PriceView(BaseView):
         super().__init__(session)
 
     @cherrypy.expose
-    def add(self, **kwargs):
-        form = PriceForm(InputDict(kwargs))
+    def add(
+        self,
+        name=None,
+        category=None,
+        unit=None,
+        cost=Decimal('0.00'),
+        currency=None,
+        company=None,
+        project=None,
+        city=None,
+        description=None,
+    ):
+        data = InputDict(
+            {
+                "name": name,
+                "category": category,
+                "unit": unit,
+                "cost": cost,
+                "currency": currency,
+                "company": company,
+                "project": project,
+                "city": city,
+                "description": description,
+            }
+        )
+
+        form = PriceForm(data)
         if cherrypy.request.method == "POST" and form.validate():
-            item = Price(**kwargs)
+            item = Price()
             form.populate_obj(item)
             with self.session() as session:
                 session.add(item)
@@ -64,8 +90,29 @@ class PriceView(BaseView):
             return template.render(prices=prices, categories=self.categories)
 
     @cherrypy.expose
-    def select(self, **kwargs):
-        form = SelectForm(InputDict(kwargs))
+    def select(
+        self,
+        name=None,
+        category=None,
+        unit=None,
+        currency=None,
+        company=None,
+        project=None,
+        city=None,
+    ):
+        data = InputDict(
+            {
+                "name": name,
+                "category": category,
+                "unit": unit,
+                "currency": currency,
+                "company": company,
+                "project": project,
+                "city": city,
+            }
+        )
+
+        form = SelectForm(data)
         if cherrypy.request.method == "POST":
             data = {
                 "name": form.name.data,
