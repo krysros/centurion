@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th scope="col">Nazwa</th>
-      <th scope="col">Kategoria</th>
+      <th scope="col">Typ</th>
       <th scope="col">Jedn.</th>
       <th scope="col">Cena</th>
       <th scope="col">Waluta</th>
@@ -23,13 +23,13 @@
         </div>
         <div>
           <small>
-            <a href="../company?name=${price.company}">${price.company}</a> >
+            <a href="../source?name=${price.source}">${price.source}</a> >
             <a href="../project?name=${price.project}">${price.project}</a> >
             <a href="../city?name=${price.city}">${price.city}</a>
           </small>
         </div>
       </td>
-      <td>${categories.get(price.category)}</td>
+      <td>${types.get(price.typ)}</td>
       <td>${price.unit}</td>
       <td>${price.cost}</td>
       <td>${price.currency}</td>

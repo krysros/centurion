@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker
 from centurion.views import (
     AutocompleteView,
     CityView,
-    CompanyView,
+    SourceView,
     PriceView,
     ProjectView,
     Root,
@@ -26,7 +26,7 @@ Session = sessionmaker(bind=engine, future=True)
 if __name__ == "__main__":
     root = Root()
     root.price = PriceView(Session)
-    root.company = CompanyView(Session)
+    root.source = SourceView(Session)
     root.project = ProjectView(Session)
     root.city = CityView(Session)
     root.autocomplete = AutocompleteView(Session)

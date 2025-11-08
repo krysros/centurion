@@ -6,7 +6,7 @@ from centurion.models import Price
 from centurion.views import BaseView
 
 
-class CompanyView(BaseView):
+class SourceView(BaseView):
     def __init__(self, session):
         super().__init__(session)
 
@@ -17,8 +17,8 @@ class CompanyView(BaseView):
         with self.session() as session:
             prices = session.execute(
                 select(Price)
-                .filter(Price.company == name)
+                .filter(Price.source == name)
                 .order_by(Price.timestamp.desc())
             ).scalars()
             template = get_template("prices.mako")
-            return template.render(prices=prices, categories=self.categories)
+            return template.render(prices=prices, types=self.types)

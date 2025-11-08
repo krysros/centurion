@@ -4,7 +4,7 @@
   <header>Cena</header>
   <ul>
     <li>Nazwa: <strong>${price.name}</strong></li>
-    <li>Kategoria: <strong>${categories.get(price.category)}</strong></li>
+    <li>Typ: <strong>${types.get(price.typ)}</strong></li>
     <li>Jednostka: <strong>${price.unit}</strong></li>
     <li>Cena: <strong>${price.cost} ${price.currency}</strong></li>
   </ul>
@@ -13,7 +13,7 @@
 <article>
   <header>Metadane</header>
   <ul>
-    <li>Firma: <strong>${price.company}</strong></li>
+    <li>Źródło: <strong>${price.source}</strong></li>
     <li>Projekt: <strong>${price.project}</strong></li>
     <li>Miasto: <strong>${price.city}</strong></li>
     <li>Dodano: <strong>${price.timestamp.strftime('%Y-%m-%d %H:%M:%S')}</strong></li>

@@ -7,9 +7,9 @@
       ${form.name.label}
       ${form.name(class_="select-name", list="list-name", **{"hx-get": "/autocomplete?attr=name", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-name", "hx-swap": "innerHTML"})}
       <datalist id="list-name"></datalist>
-      ${form.category.label}
-      ${form.category(class_="select-category", list="list-category", **{"hx-get": "/autocomplete?attr=category", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-category", "hx-swap": "innerHTML"})}
-      <datalist id="list-category"></datalist>
+      ${form.typ.label}
+      ${form.typ(class_="select-typ", list="list-typ", **{"hx-get": "/autocomplete?attr=typ", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-typ", "hx-swap": "innerHTML"})}
+      <datalist id="list-typ"></datalist>
       ${form.unit.label}
       ${form.unit(class_="select-unit", list="list-unit", **{"hx-get": "/autocomplete?attr=unit", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-unit", "hx-swap": "innerHTML"})}
       <datalist id="list-unit"></datalist>
@@ -21,9 +21,9 @@
   <fieldset>
     <article>
       <header>Metadane</header>
-      ${form.company.label}
-      ${form.company(class_="select-company", list="list-company", **{"hx-get": "/autocomplete?attr=company", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-company", "hx-swap": "innerHTML"})}
-      <datalist id="list-company"></datalist>
+      ${form.source.label}
+      ${form.source(class_="select-source", list="list-source", **{"hx-get": "/autocomplete?attr=source", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-source", "hx-swap": "innerHTML"})}
+      <datalist id="list-source"></datalist>
       ${form.project.label}
       ${form.project(class_="select-project", list="list-project", **{"hx-get": "/autocomplete?attr=project", "hx-trigger": "keyup changed delay:300ms", "hx-target": "#list-project", "hx-swap": "innerHTML"})}
       <datalist id="list-project"></datalist>

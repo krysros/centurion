@@ -21,4 +21,4 @@ class ProjectView(BaseView):
                 .order_by(Price.timestamp.desc())
             ).scalars()
             template = get_template("prices.mako")
-            return template.render(prices=prices, categories=self.categories)
+            return template.render(prices=prices, types=self.types)

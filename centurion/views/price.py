@@ -16,11 +16,11 @@ class PriceView(BaseView):
     def add(
         self,
         name=None,
-        category=None,
+        typ=None,
         unit=None,
         cost=Decimal('0.00'),
         currency=None,
-        company=None,
+        source=None,
         project=None,
         city=None,
         description=None,
@@ -28,11 +28,11 @@ class PriceView(BaseView):
         data = InputDict(
             {
                 "name": name,
-                "category": category,
+                "typ": typ,
                 "unit": unit,
                 "cost": cost,
                 "currency": currency,
-                "company": company,
+                "source": source,
                 "project": project,
                 "city": city,
                 "description": description,
@@ -67,7 +67,7 @@ class PriceView(BaseView):
             if not price:
                 return self.default()
             template = get_template("display.mako")
-            return template.render(price=price, categories=self.categories)
+            return template.render(price=price, types=self.types)
 
     @cherrypy.expose
     def browse(self, sort="timestamp"):
@@ -76,7 +76,7 @@ class PriceView(BaseView):
                 select(Price).order_by(getattr(Price, sort).desc())
             ).scalars()
             template = get_template("prices.mako")
-            return template.render(prices=prices, categories=self.categories)
+            return template.render(prices=prices, types=self.types)
 
     @cherrypy.expose
     def search(self, q=None):
@@ -87,26 +87,26 @@ class PriceView(BaseView):
                 .order_by(Price.name)
             ).scalars()
             template = get_template("prices.mako")
-            return template.render(prices=prices, categories=self.categories)
+            return template.render(prices=prices, types=self.types)
 
     @cherrypy.expose
     def select(
         self,
         name=None,
-        category=None,
+        typ=None,
         unit=None,
         currency=None,
-        company=None,
+        source=None,
         project=None,
         city=None,
     ):
         data = InputDict(
             {
                 "name": name,
-                "category": category,
+                "typ": typ,
                 "unit": unit,
                 "currency": currency,
-                "company": company,
+                "source": source,
                 "project": project,
                 "city": city,
             }
@@ -116,10 +116,10 @@ class PriceView(BaseView):
         if cherrypy.request.method == "POST":
             data = {
                 "name": form.name.data,
-                "category": form.category.data,
+                "typ": form.typ.data,
                 "unit": form.unit.data,
                 "currency": form.currency.data,
-                "company": form.company.data,
+                "source": form.source.data,
                 "project": form.project.data,
                 "city": form.city.data,
             }
@@ -127,6 +127,6 @@ class PriceView(BaseView):
             with self.session() as session:
                 prices = session.execute(select(Price).filter(*criterion)).scalars()
                 template = get_template("prices.mako")
-                return template.render(prices=prices, categories=self.categories)
+                return template.render(prices=prices, types=self.types)
         template = get_template("select.mako")
         return template.render(form=form)

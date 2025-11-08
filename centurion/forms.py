@@ -1,7 +1,7 @@
 from wtforms import DecimalField, Form, SelectField, StringField, TextAreaField
 from wtforms.validators import InputRequired, Length
 
-CATEGORIES = [
+TYPES = [
     ("RMS", "RMS"),
     ("Bez materiału", "Bez materiału"),
     ("Robocizna", "Robocizna"),
@@ -43,7 +43,7 @@ class PriceForm(Form):
         filters=[strip_filter],
     )
 
-    category = SelectField("Kategoria", choices=CATEGORIES)
+    typ = SelectField("Typ", choices=TYPES)
 
     unit = StringField(
         "Jednostka",
@@ -63,14 +63,14 @@ class PriceForm(Form):
 
     currency = SelectField("Waluta", choices=CURRENCIES)
 
-    company = StringField(
-        "Firma",
+    source = StringField(
+        "Źródło",
         [
-            InputRequired("Podaj nazwę firmy"),
+            InputRequired("Podaj źródło ceny"),
             Length(
                 min=3,
                 max=100,
-                message="Długość firmy musi zawierać się "
+                message="Długość źródła musi zawierać się "
                 "w przedziale %(min)d-%(max)d",
             ),
         ],
@@ -110,9 +110,9 @@ class PriceForm(Form):
 
 class SelectForm(Form):
     name = StringField("Nazwa", filters=[strip_filter])
-    category = SelectField("Kategoria", choices=CATEGORIES)
+    typ = SelectField("Typ", choices=TYPES)
     unit = StringField("Jednostka", filters=[strip_filter])
     currency = SelectField("Waluta", choices=CURRENCIES)
-    company = StringField("Firma", filters=[strip_filter])
+    source = StringField("Źródło", filters=[strip_filter])
     project = StringField("Projekt", filters=[strip_filter])
     city = StringField("Miasto", filters=[strip_filter])

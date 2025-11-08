@@ -13,13 +13,13 @@ class Price(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str]
-    category: Mapped[str]
+    typ: Mapped[str]
     unit: Mapped[str]
     cost: Mapped[Decimal] = mapped_column(
         Numeric(precision=10, scale=2), nullable=False
     )
     currency: Mapped[str]
-    company: Mapped[str]
+    source: Mapped[str]
     project: Mapped[str]
     city: Mapped[str]
     description: Mapped[Optional[str]]
