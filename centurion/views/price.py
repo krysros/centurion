@@ -50,7 +50,7 @@ class PriceView(BaseView):
                 session.add(item)
                 session.commit()
             raise cherrypy.HTTPRedirect("/price/browse")
-        template = get_template("new_price.mako")
+        template = get_template("add_price.mako")
         return template.render(form=form)
 
     @cherrypy.expose
@@ -64,12 +64,12 @@ class PriceView(BaseView):
             raise cherrypy.HTTPRedirect("/")
 
     @cherrypy.expose
-    def display(self, id):
+    def get(self, id):
         with self.session() as session:
             price = session.get(Price, int(id))
             if not price:
                 return self.default()
-            template = get_template("display.mako")
+            template = get_template("get_price.mako")
             return template.render(price=price, types=self.types)
 
     @cherrypy.expose

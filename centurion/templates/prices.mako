@@ -17,7 +17,7 @@
     <tr>
       <td>
         <div>
-          <a href="../price/display?id=${price.id}">
+          <a href="../price/get?id=${price.id}">
             <strong>${price.name}</strong>
           </a>
         </div>
