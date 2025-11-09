@@ -18,13 +18,16 @@ class PriceView(BaseView):
         name=None,
         typ=None,
         unit=None,
-        cost=Decimal('0.00'),
+        cost=None,
         currency=None,
         source=None,
         project=None,
         city=None,
         description=None,
     ):
+        if cost is None:
+            cost = Decimal('0.00')
+
         data = InputDict(
             {
                 "name": name,
