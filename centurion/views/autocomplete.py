@@ -25,7 +25,7 @@ class AutocompleteView(object):
             return ""
 
         # If q wasn't provided explicitly, fall back to a parameter named
-        # after the attribute (e.g. ?source=Acme). Keep kwargs compatibility
+        # after the attribute (e.g. ?source=ABC). Keep kwargs compatibility
         # for existing callers.
         if q is None:
             q = kwargs.get(attr) or cherrypy.request.params.get(attr)
